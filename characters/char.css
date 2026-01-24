@@ -144,6 +144,7 @@
   border-radius: 1000px;
   font-size: 14px;
   outline: 1px solid rgba(250, 250, 250, 0.3);
+  font-family: "Montserrat";
 }
 
 .int11:focus {
@@ -160,4 +161,6 @@
   outline: 1px solid rgba(250, 250, 250, 0.3);
   color: white;
   background-color: #0d171d00;
+  text-decoration: none;
+  font-family: "Montserrat";
 }

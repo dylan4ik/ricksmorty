@@ -5,17 +5,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="char.css">
 </head>
 
 <body style="padding: 0px; margin: 0px;">
-    <header class="hdr"><div class="dspF"><img src="logo.svg" alt="1" style="margin-top: 12px;">
-        <input type="text" class="int11"><img src="search.svg" alt="3"></div>
+    <header class="hdr">
+        <div class="dspF" style="justify-content: space-between;"><img src="logo.svg" alt="1" style="margin-top: 12px;">
+            <div><img style src="search.svg" alt="3">
+            <input type="text" class="int11"></div>
+        </div>
         <div class="dspF">
-        <h1 class="chr1">Characters</h1>
-        <p>Our character bios provide detailed information on every <br>member of the Smith family and beyond. Get to know <br>these unforgettable characters on a whole new level - start <br>exploring now!</p>
-        <img src="image.svg" alt="2">
-        <a href="" class="bh1">Bach home</a>
+            <h1 class="chr1" style="  font-family: 'Montserrat';">Characters</h1>
+            <p>Our character bios provide detailed information on every <br>member of the Smith family and beyond. Get
+                to know <br>these unforgettable characters on a whole new level - start <br>exploring now!</p>
+            <img src="image.svg" alt="2">
+            <a href="" class="bh1">Back home</a>
     </header>
     <img src="" alt="">
     <div>
@@ -40,140 +48,57 @@
         </div>
     </div>
     <div>
-        <p></p><button>
-            <p></p><img src="" alt="">
+        <p>Species</p>
+        <button id="btn2">
+            <p id="species-label">Human</p>
+            <img class="dos2" src="chevron-down.svg" alt="">
         </button>
-        <div class="dppp2 invis">
-            <p style="margin: 0px;">Alive</p>
-            <p style="margin: 0px;">Dead</p>
-            <p style="margin: 0px;">Unknown</p>
+        <div class="dppp2 invis" id="species-dropdown">
+            <p class="species-opt" data-value="All" style="margin: 0px;">All</p>
+            <p class="species-opt" data-value="Human" style="margin: 0px;">Human</p>
+            <p class="species-opt" data-value="Alien" style="margin: 0px;">Alien</p>
+            <p class="species-opt" data-value="Robot" style="margin: 0px;">Robot</p>
+            <p class="species-opt" data-value="Cronenberg" style="margin: 0px;">Cronenberg</p>
+            <p class="species-opt" data-value="Animal" style="margin: 0px;">Animal</p>
+            <p class="species-opt" data-value="Humanoid" style="margin: 0px;">Humanoid</p>
+            <p class="species-opt" data-value="Poopybuthole" style="margin: 0px;">Poopybuthole</p>
+            <p class="species-opt" data-value="Mythological Creature" style="margin: 0px;">Mythological Creature</p>
         </div>
     </div>
     <div>
-        <p></p><button>
-            <p></p><img src="" alt="">
+        <p>Type</p><button id="btn3">
+            <p id="type-label">Parasite</p><img class="dos3" src="chevron-down.svg" alt="">
+        </button>
+        <div class="dppp3 invis" id="type-dropdown">
+            <p class="type-opt" data-value="All" style="margin: 0px;">All</p>
+            <p class="type-opt" data-value="Parasite" style="margin: 0px;">Parasite</p>
+            <p class="type-opt" data-value="Superhuman" style="margin: 0px;">Superhuman</p>
+            <p class="type-opt" data-value="Humanoid" style="margin: 0px;">Humanoid</p>
+            <p class="type-opt" data-value="Genetic" style="margin: 0px;">Genetic</p>
+            <p class="type-opt" data-value="Fish-Person" style="margin: 0px;">Fish-Person</p>
+            <p class="type-opt" data-value="Cronenberg" style="margin: 0px;">Cronenberg</p>
+            <p class="type-opt" data-value="Cyborg" style="margin: 0px;">Cyborg</p>
+        </div>
+    </div>
+    <div>
+        <p>Gender</p><button id="btn4">
+            <p id="gender-label">All</p><img class="dos4" src="chevron-down.svg" alt="">
             <div></div>
         </button>
-        <div class="dppp3 invis">
-            <p style="margin: 0px;">Alive</p>
-            <p style="margin: 0px;">Dead</p>
-            <p style="margin: 0px;">Unknown</p>
+        <div class="dppp4 invis" id="gender-dropdown">
+            <p class="gender-opt" data-value="All" style="margin: 0px;">All</p>
+            <p class="gender-opt" data-value="Male" style="margin: 0px;">Male</p>
+            <p class="gender-opt" data-value="Female" style="margin: 0px;">Female</p>
+            <p class="gender-opt" data-value="Genderless" style="margin: 0px;">Genderless</p>
+            <p class="gender-opt" data-value="Unknown" style="margin: 0px;">Unknown</p>
         </div>
     </div>
     <div>
-        <p></p><button>
-            <p></p><img src="" alt="">
-            <div></div>
-        </button>
-        <div class="dppp4 invis">
-            <p style="margin: 0px;">Alive</p>
-            <p style="margin: 0px;">Dead</p>
-            <p style="margin: 0px;">Unknown</p>
-        </div>
+        <ul id="chrts1">
+
+        </ul>
     </div>
-    <div>
-        <div><img src="" alt="">
-            <h5></h5>
-            <p></p>
-            <p></p>
-        </div>
-        <div><img src="" alt="">
-            <h5></h5>
-            <p></p>
-            <p></p>
-        </div>
-        <div><img src="" alt="">
-            <h5></h5>
-            <p></p>
-            <p></p>
-        </div>
-        <div><img src="" alt="">
-            <h5></h5>
-            <p></p>
-            <p></p>
-        </div>
-        <div><img src="" alt="">
-            <h5></h5>
-            <p></p>
-            <p></p>
-        </div>
-        <div><img src="" alt="">
-            <h5></h5>
-            <p></p>
-            <p></p>
-        </div>
-        <div><img src="" alt="">
-            <h5></h5>
-            <p></p>
-            <p></p>
-        </div>
-        <div><img src="" alt="">
-            <h5></h5>
-            <p></p>
-            <p></p>
-        </div>
-        <div><img src="" alt="">
-            <h5></h5>
-            <p></p>
-            <p></p>
-        </div>
-        <div><img src="" alt="">
-            <h5></h5>
-            <p></p>
-            <p></p>
-        </div>
-        <div><img src="" alt="">
-            <h5></h5>
-            <p></p>
-            <p></p>
-        </div>
-        <div><img src="" alt="">
-            <h5></h5>
-            <p></p>
-            <p></p>
-        </div>
-        <div><img src="" alt="">
-            <h5></h5>
-            <p></p>
-            <p></p>
-        </div>
-        <div><img src="" alt="">
-            <h5></h5>
-            <p></p>
-            <p></p>
-        </div>
-        <div><img src="" alt="">
-            <h5></h5>
-            <p></p>
-            <p></p>
-        </div>
-        <div><img src="" alt="">
-            <h5></h5>
-            <p></p>
-            <p></p>
-        </div>
-        <div><img src="" alt="">
-            <h5></h5>
-            <p></p>
-            <p></p>
-        </div>
-        <div><img src="" alt="">
-            <h5></h5>
-            <p></p>
-            <p></p>
-        </div>
-        <div><img src="" alt="">
-            <h5></h5>
-            <p></p>
-            <p></p>
-        </div>
-        <div><img src="" alt="">
-            <h5></h5>
-            <p></p>
-            <p></p>
-        </div>
-    </div>
-    <button></button>
+    <button id="lmbtn">Load more</button>
     <footer><img src="" alt="">
         <div>
             <p></p>
@@ -181,6 +106,7 @@
         </div>
         <div><a href=""></a><a href=""></a><a href=""></a></div>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
     <script src="char.js"></script>
 </body>
 
