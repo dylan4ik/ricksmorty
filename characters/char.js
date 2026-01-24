@@ -7,18 +7,16 @@ const unk = document.getElementById('Unk')
 const palive = document.getElementById('alive')
 const chrts1 = document.getElementById('chrts1')
 const loadMoreBtn = document.querySelector('#lmbtn');
-
-// Species filter
+const modal = document.getElementById('character-modal')
+const closeModal = document.getElementById('close-modal')
+const modalImage = document.getElementById('modal-image')
+const episodesList = document.getElementById('episodes-list')
 const btn2 = document.getElementById('btn2')
 const dppp2 = document.getElementById('species-dropdown')
 const speciesLabel = document.getElementById('species-label')
-
-// Type filter
 const btn3 = document.getElementById('btn3')
 const dppp3 = document.getElementById('type-dropdown')
 const typeLabel = document.getElementById('type-label')
-
-// Gender filter
 const btn4 = document.getElementById('btn4')
 const dppp4 = document.getElementById('gender-dropdown')
 const genderLabel = document.getElementById('gender-label')
@@ -43,7 +41,7 @@ function filterCharacters() {
 }
 
 const template1 = `<li class="li1">
-    <img src="{{imgsrc}}" alt="sry" class="imgsrc">
+    <img src="{{imgsrc}}" alt="sry" class="imgsrc" data-character-id="{{id}}">
     <P class="p1bo">{{p1bo}}</P>
     <p class="p2gr">Origin</p><p class="p2bl">{{p2bl}}</p>
     <p class="p3gr">Location</p><p class="p3bl">{{p3bl}}</p>
@@ -51,6 +49,14 @@ const template1 = `<li class="li1">
 
 function renderCharacters(characters) {
     chrts1.innerHTML = ''
+    const noResults = document.getElementById('no-results')
+    
+    if (characters.length === 0) {
+        noResults.classList.remove('invis')
+        return
+    }
+    
+    noResults.classList.add('invis')
     const template = Handlebars.compile(template1)
     
     characters.forEach(character => {
@@ -58,15 +64,59 @@ function renderCharacters(characters) {
             imgsrc: character.image,
             p1bo: character.name,
             p2bl: character.origin.name,
-            p3bl: character.location.name
+            p3bl: character.location.name,
+            id: character.id
         })
         chrts1.innerHTML += html
+    })
+    document.querySelectorAll('.imgsrc').forEach(img => {
+        img.addEventListener('click', () => {
+            const characterId = img.dataset.characterId
+            const character = allCharacters.find(char => char.id == characterId)
+            if (character) {
+                showCharacterModal(character)
+            }
+        })
     })
 }
 
 function applyFilters() {
     const filtered = filterCharacters()
     renderCharacters(filtered)
+}
+
+async function showCharacterModal(character) {
+
+    document.getElementById('modal-image').src = character.image
+    document.getElementById('modal-status').textContent = character.status
+    document.getElementById('modal-species').textContent = character.species
+    document.getElementById('modal-gender').textContent = character.gender
+    document.getElementById('modal-origin').textContent = character.origin.name
+    document.getElementById('modal-location').textContent = character.location.name
+    document.getElementById('modal-type').textContent = character.type || 'N/A'
+
+    episodesList.innerHTML = '<li>Loading episodes...</li>'
+    try {
+        const episodePromises = character.episode.map(url => fetch(url).then(res => res.json()))
+        const episodes = await Promise.all(episodePromises)
+        
+        episodesList.innerHTML = ''
+        episodes.forEach(episode => {
+            const episodeItem = document.createElement('li')
+            episodeItem.innerHTML = `
+                <div style="padding: 10px; border: 1px solid #00ff41; margin: 5px 0; border-radius: 5px;">
+                    <p style="margin: 5px 0; color: #00ff41;"><strong>${episode.name}</strong></p>
+                    <p style="margin: 5px 0; color: #888;">Season ${episode.season}</p>
+                    <p style="margin: 5px 0; color: #888;">Air date: ${episode.air_date}</p>
+                </div>`
+            episodesList.appendChild(episodeItem)
+        })
+    } catch (error) {
+        console.error('Error loading episodes:', error)
+        episodesList.innerHTML = '<li>Error loading episodes</li>'
+    }
+
+    modal.classList.remove('invis')
 }
 
 async function loadCharacters(page = 1) {
@@ -92,6 +142,16 @@ loadCharacters()
 
 loadMoreBtn.addEventListener('click', () => {
     loadCharacters(currentPage + 1)
+})
+
+closeModal.addEventListener('click', () => {
+    modal.classList.add('invis')
+})
+
+window.addEventListener('click', (event) => {
+    if (event.target === modal) {
+        modal.classList.add('invis')
+    }
 })
 btn1.addEventListener('click', () => {
 
@@ -168,44 +228,80 @@ unk.addEventListener('click', () => {
     }
 })
 
-// Species filter
 btn2.addEventListener('click', () => {
-    dppp2.classList.toggle('invis')
+    if (dppp2.classList.contains('invis')) {
+        dppp2.classList.remove('invis', 'cls')
+        dppp2.classList.add('opn')
+    } else {
+        dppp2.classList.remove('opn')
+        dppp2.classList.add('cls')
+        setTimeout(() => {
+            dppp2.classList.add('invis')
+        }, 490)
+    }
 })
 
 document.querySelectorAll('.species-opt').forEach(option => {
     option.addEventListener('click', () => {
         currentSpecies = option.dataset.value
         speciesLabel.textContent = currentSpecies
-        dppp2.classList.add('invis')
+        dppp2.classList.remove('opn')
+        dppp2.classList.add('cls')
+        setTimeout(() => {
+            dppp2.classList.add('invis')
+        }, 490)
         applyFilters()
     })
 })
 
-// Type filter
 btn3.addEventListener('click', () => {
-    dppp3.classList.toggle('invis')
+    if (dppp3.classList.contains('invis')) {
+        dppp3.classList.remove('invis', 'cls')
+        dppp3.classList.add('opn')
+    } else {
+        dppp3.classList.remove('opn')
+        dppp3.classList.add('cls')
+        setTimeout(() => {
+            dppp3.classList.add('invis')
+        }, 490)
+    }
 })
 
 document.querySelectorAll('.type-opt').forEach(option => {
     option.addEventListener('click', () => {
         currentType = option.dataset.value
         typeLabel.textContent = currentType
-        dppp3.classList.add('invis')
+        dppp3.classList.remove('opn')
+        dppp3.classList.add('cls')
+        setTimeout(() => {
+            dppp3.classList.add('invis')
+        }, 490)
         applyFilters()
     })
 })
 
-// Gender filter
 btn4.addEventListener('click', () => {
-    dppp4.classList.toggle('invis')
+    if (dppp4.classList.contains('invis')) {
+        dppp4.classList.remove('invis', 'cls')
+        dppp4.classList.add('opn')
+    } else {
+        dppp4.classList.remove('opn')
+        dppp4.classList.add('cls')
+        setTimeout(() => {
+            dppp4.classList.add('invis')
+        }, 490)
+    }
 })
 
 document.querySelectorAll('.gender-opt').forEach(option => {
     option.addEventListener('click', () => {
         currentGender = option.dataset.value
         genderLabel.textContent = currentGender
-        dppp4.classList.add('invis')
+        dppp4.classList.remove('opn')
+        dppp4.classList.add('cls')
+        setTimeout(() => {
+            dppp4.classList.add('invis')
+        }, 490)
         applyFilters()
     })
 })
