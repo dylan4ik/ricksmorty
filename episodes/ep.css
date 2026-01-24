@@ -1,0 +1,274 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.dspF {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 20px;
+  justify-content: space-between;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+}
+
+.header-text {
+  flex: 1;
+}
+
+.header-image {
+  width: 280px;
+  height: 280px;
+}
+
+.filter-controls {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+}
+
+.filter-btn {
+  width: 165px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  position: relative;
+}
+
+.filter-btn p {
+  margin: 0;
+}
+
+.chevron {
+  width: 16px;
+  height: 16px;
+}
+
+.dropdown {
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  width: 165px;
+  align-items: center;
+  justify-content: flex-start;
+  position: absolute;
+  overflow-y: auto;
+  max-height: 200px;
+  margin-top: 48px;
+  top: 0;
+}
+
+.filter-opt {
+  width: 100%;
+  padding: 12px;
+  text-align: center;
+  cursor: pointer;
+  margin: 0;
+}
+
+.invis {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.cls {
+  animation: closeing 500ms ease-out;
+  animation-iteration-count: 1;
+}
+
+.opn {
+  animation: opening 500ms ease-out;
+  animation-iteration-count: 1;
+}
+
+@keyframes closeing {
+  0% {
+    height: 200px;
+    margin-top: 0px;
+    opacity: 1;
+  }
+
+  100% {
+    height: 50px;
+    margin-top: -50px;
+    opacity: 0;
+  }
+}
+
+@keyframes opening {
+  0% {
+    height: 50px;
+    margin-top: -50px;
+    opacity: 0;
+  }
+
+  100% {
+    height: 200px;
+    margin-top: 0px;
+    opacity: 1;
+  }
+}
+
+.episodes-container {
+  padding: 40px;
+  min-height: 400px;
+}
+
+#episodesList {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.episode-card {
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.episode-card-image {
+  width: 100%;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.episode-card-content {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.episode-code {
+  margin-bottom: 10px;
+}
+
+.episode-name {
+  margin: 0 0 12px 0;
+  line-height: 1.4;
+  min-height: 40px;
+}
+
+.episode-info {
+  margin: 0 0 12px 0;
+}
+
+.episode-date {
+  margin-top: auto;
+  padding-top: 12px;
+}
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  min-height: 300px;
+}
+
+.spinner {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.no-results {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+}
+
+.load-more-btn {
+  display: block;
+  margin: 40px auto;
+  padding: 12px 32px;
+  cursor: pointer;
+}
+
+.load-more-btn.invis {
+  display: none;
+}
+
+.ricky {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.tags-container img {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  .hdr {
+    padding: 20px;
+  }
+
+  .header-content {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .header-image {
+    width: 200px;
+    height: 200px;
+  }
+
+  #episodesList {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+  }
+
+  .filter-controls {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .ricky {
+    flex-direction: column;
+    gap: 20px;
+  }
+}

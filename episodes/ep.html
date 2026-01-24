@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Episodes - Rick and Morty</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="ep.css">
+</head>
+<body style="padding: 0px; margin: 0px;">
+    <header class="hdr">
+        <div class="dspF" style="justify-content: space-between;"><img src="../img/logo.svg" alt="logo" style="margin-top: 12px;">
+            <div><img src="../characters/search.svg" alt="search">
+            <input type="text" class="int11" id="searchInput" placeholder="Search episodes..."></div>
+        </div>
+        <div class="header-content">
+            <div class="header-text">
+                <h1 class="chr1" style="font-family: 'Montserrat';">Episodes</h1>
+                <p>Explore every episode of Rick and Morty. Find details about<br>air dates, episode codes, and all the interdimensional<br>adventures. Start your journey through all seasons now!</p>
+                <a href="../index.html" class="bh1">Back home</a>
+            </div>
+            <img src="../characters/image.svg" alt="episodes-image" class="header-image">
+        </div>
+    </header>
+
+    <div class="filters-section">
+        <img src="Tags.png" alt="tags" class="tags-image">
+        <div class="filter-controls">
+            <div class="filter-group">
+                <button id="seasonBtn" class="filter-btn">
+                    <p id="seasonLabel">some name</p>
+                    <img class="chevron" src="../characters/chevron-down.svg" alt="dropdown">
+                </button>
+                <div class="dropdown invis" id="seasonDropdown">
+                    <p class="filter-opt" data-value="all">All Seasons</p>
+                    <p class="filter-opt" data-value="1">Season 1</p>
+                    <p class="filter-opt" data-value="2">Season 2</p>
+                    <p class="filter-opt" data-value="3">Season 3</p>
+                    <p class="filter-opt" data-value="4">Season 4</p>
+                    <p class="filter-opt" data-value="5">Season 5</p>
+                    <p class="filter-opt" data-value="6">Season 6</p>
+                </div>
+            </div>
+            <div class="filter-group">
+                <p>All seasons</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="episodes-container">
+        <ul id="episodesList"></ul>
+        <div id="loadingSpinner" class="loading invis">
+            <div class="spinner"></div>
+            <p>Oops! Try looking for something else...</p>
+        </div>
+        <div id="noResults" class="no-results invis">
+            <p>No episodes found</p>
+        </div>
+    </div>
+
+    <button id="loadMoreBtn" class="load-more-btn">Load more</button>
+
+    <footer class="ricky">
+        <div style="display: flex; align-items: center; gap: 20px;">
+            <img src="../img/logo.svg" alt="logo" style="width: 100px;">
+            <div>
+                <p>Characters</p>
+                <p>Episodes</p>
+            </div>
+        </div>
+        <div style="display: flex; gap: 15px;">
+            <img src="../characters/facebook.svg" alt="facebook">
+            <img src="../characters/twitter.svg" alt="twitter">
+            <img src="../characters/instagram.svg" alt="instagram">
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    <script src="ep.js"></script>
+</body>
+</html>
