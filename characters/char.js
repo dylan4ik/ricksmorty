@@ -35,7 +35,7 @@ function filterCharacters() {
         const speciesMatch = currentSpecies === 'All' || char.species === currentSpecies
         const typeMatch = currentType === 'All' || char.type === currentType
         const genderMatch = currentGender === 'All' || char.gender === currentGender
-        
+
         return statusMatch && speciesMatch && typeMatch && genderMatch
     })
 }
@@ -50,15 +50,15 @@ const template1 = `<li class="li1">
 function renderCharacters(characters) {
     chrts1.innerHTML = ''
     const noResults = document.getElementById('no-results')
-    
+
     if (characters.length === 0) {
         noResults.classList.remove('invis')
         return
     }
-    
+
     noResults.classList.add('invis')
     const template = Handlebars.compile(template1)
-    
+
     characters.forEach(character => {
         const html = template({
             imgsrc: character.image,
@@ -88,26 +88,57 @@ function applyFilters() {
 async function showCharacterModal(character) {
 
     document.getElementById('modal-image').src = character.image
-    document.getElementById('modal-status').textContent = character.status
-    document.getElementById('modal-species').textContent = character.species
-    document.getElementById('modal-gender').textContent = character.gender
-    document.getElementById('modal-origin').textContent = character.origin.name
-    document.getElementById('modal-location').textContent = character.location.name
-    document.getElementById('modal-type').textContent = character.type || 'N/A'
+    
+    const modalInfo = document.querySelector('.modal-info')
+    modalInfo.innerHTML = `
+        <div class="info-row">
+            <div class="info-label">Status</div>
+            <div class="info-value">${character.status}</div>
+        </div>
+        <div class="info-row">
+            <div class="info-label">Species</div>
+            <div class="info-value">${character.species}</div>
+        </div>
+        <div class="info-row">
+            <div class="info-label">Gender</div>
+            <div class="info-value">${character.gender}</div>
+        </div>
+        <div class="info-row">
+            <div class="info-label">Origin</div>
+            <div class="info-value">${character.origin.name}</div>
+        </div>
+        <div class="info-row">
+            <div class="info-label">Location</div>
+            <div class="info-value">${character.location.name}</div>
+        </div>
+        <div class="info-row">
+            <div class="info-label">Type</div>
+            <div class="info-value">${character.type || 'N/A'}</div>
+        </div>
+    `
 
     episodesList.innerHTML = '<li>Loading episodes...</li>'
     try {
         const episodePromises = character.episode.map(url => fetch(url).then(res => res.json()))
         const episodes = await Promise.all(episodePromises)
-        
+
         episodesList.innerHTML = ''
         episodes.forEach(episode => {
             const episodeItem = document.createElement('li')
+            episodeItem.classList.add('episode-item')
             episodeItem.innerHTML = `
-                <div style="padding: 10px; border: 1px solid #00ff41; margin: 5px 0; border-radius: 5px;">
-                    <p style="margin: 5px 0; color: #00ff41;"><strong>${episode.name}</strong></p>
-                    <p style="margin: 5px 0; color: #888;">Season ${episode.season}</p>
-                    <p style="margin: 5px 0; color: #888;">Air date: ${episode.air_date}</p>
+                <div class="episode-box">
+                <div styles="display: flex; flex-direction: row; align-items: center;">
+                    <p class="episode-name"><strong>${episode.name}</strong></p>
+                    </div>
+                    <div class="episode-info">
+                        <div>
+                        <p class="episode-label">Season <span class="episode-value">${episode.season}</span></p>
+                        </div>
+                        <div>
+                        <p class="episode-label">Air date <span class="episode-value">${episode.air_date}</span></p>
+                        </div>
+                    </div>
                 </div>`
             episodesList.appendChild(episodeItem)
         })
@@ -123,11 +154,11 @@ async function loadCharacters(page = 1) {
     try {
         const response = await fetch(`https://rickandmortyapi.com/api/character?page=${page}`)
         const dat = await response.json()
-        
+
         allCharacters = [...allCharacters, ...dat.results]
 
         applyFilters()
-        
+
         currentPage = page
 
         if (!dat.info.next) {

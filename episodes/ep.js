@@ -7,6 +7,9 @@ const searchInput = document.getElementById('searchInput');
 const seasonBtn = document.getElementById('seasonBtn');
 const seasonDropdown = document.getElementById('seasonDropdown');
 const seasonLabel = document.getElementById('seasonLabel');
+const episodeModal = document.getElementById('episodeModal');
+const closeModal = document.getElementById('closeModal');
+const modalBody = document.getElementById('modalBody');
 
 let allEpisodes = [];
 let filteredEpisodes = [];
@@ -18,9 +21,6 @@ let seasonOpened = false;
 
 const episodeTemplate = `
 <li class="episode-card">
-    <div class="episode-card-image">
-        <span>Episode Image</span>
-    </div>
     <div class="episode-card-content">
         <div class="episode-code">{{code}}</div>
         <h3 class="episode-name">{{name}}</h3>
@@ -28,6 +28,28 @@ const episodeTemplate = `
         <div class="episode-date">Aired: {{air_date}}</div>
     </div>
 </li>
+`;
+
+const modalTemplate = `
+<div class="modal-info">
+    <h2>{{name}}</h2>
+    <div class="info-row">
+        <span class="info-label">Episode Code</span>
+        <span class="info-value">{{code}}</span>
+    </div>
+    <div class="info-row">
+        <span class="info-label">Air Date</span>
+        <span class="info-value">{{air_date}}</span>
+    </div>
+    <div class="info-row">
+        <span class="info-label">Season</span>
+        <span class="info-value">{{season}}</span>
+    </div>
+    <div class="info-row">
+        <span class="info-label">Episode Number</span>
+        <span class="info-value">{{episode}}</span>
+    </div>
+</div>
 `;
 
 async function fetchEpisodes(page = 1) {
@@ -92,12 +114,33 @@ function renderEpisodes(episodes) {
     });
     
     noResults.classList.add('invis');
+    
+    document.querySelectorAll('.episode-card').forEach((card) => {
+        card.addEventListener('click', () => {
+            openEpisodeModal(episodes.find(ep => ep.episode === card.querySelector('.episode-code').textContent));
+        });
+    });
 }
 
 function showNoResults() {
     episodesList.innerHTML = '';
     noResults.classList.remove('invis');
     loadMoreBtn.classList.add('invis');
+}
+
+function openEpisodeModal(episode) {
+    const template = Handlebars.compile(modalTemplate);
+    const seasonNum = episode.episode.match(/S(\d+)/)[1];
+    
+    modalBody.innerHTML = template({
+        code: episode.episode,
+        name: episode.name,
+        air_date: episode.air_date,
+        season: seasonNum,
+        episode: episode.episode.split('E')[1]
+    });
+    
+    episodeModal.classList.remove('invis');
 }
 
 seasonBtn.addEventListener('click', () => {
@@ -115,9 +158,10 @@ seasonBtn.addEventListener('click', () => {
     }
 });
 
-document.querySelectorAll('#seasonDropdown .filter-opt').forEach(option => {
+document.querySelectorAll('#seasonDropdown .filter-opt').forEach((option, index) => {
     option.addEventListener('click', (e) => {
-        currentSeason = e.target.dataset.value;
+        const seasons = ['all', '1', '2', '3', '4', '5', '6'];
+        currentSeason = seasons[index];
         seasonLabel.textContent = e.target.textContent;
         
         seasonDropdown.classList.remove('opn');
@@ -153,6 +197,16 @@ document.addEventListener('click', (e) => {
             seasonDropdown.classList.add('invis');
         }, 490);
         seasonOpened = false;
+    }
+});
+
+closeModal.addEventListener('click', () => {
+    episodeModal.classList.add('invis');
+});
+
+episodeModal.addEventListener('click', (event) => {
+    if (event.target === episodeModal) {
+        episodeModal.classList.add('invis');
     }
 });
 

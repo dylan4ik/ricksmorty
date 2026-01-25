@@ -12,98 +12,107 @@
     <link rel="stylesheet" href="char.css">
 </head>
 
-<body style="padding: 0px; margin: 0px;">
+<body style="margin: 0px    ;">
     <header class="hdr">
-        <div class="dspF" style="justify-content: space-between;"><img src="logo.svg" alt="1" style="margin-top: 12px;">
-            <div><img style src="search.svg" alt="3">
-            <input type="text" class="int11"></div>
+        <div class="hdr-top">
+            <div class="hdr-logo">
+                <img src="logo.svg" alt="logo">
+            </div>
+            <div class="hdr-search">
+                <input type="text" class="int11" placeholder="Search">
+            </div>
         </div>
-        <div class="dspF">
-            <h1 class="chr1" style="  font-family: 'Montserrat';">Characters</h1>
-            <p>Our character bios provide detailed information on every <br>member of the Smith family and beyond. Get
-                to know <br>these unforgettable characters on a whole new level - start <br>exploring now!</p>
-            <img src="image.svg" alt="2">
-            <a href="../index.html" class="bh1">Back home</a>
+        <div class="hdr-content">
+            <div class="divhdr">
+                <div class="dht1">
+                    <h1>Characters</h1>
+                </div>
+                <div class="hdr-txt">
+                    <p>Our character bios provide detailed information on every member of the Smith family and beyond.
+                        Get to know these unforgettable characters on a whole new level - start exploring now!</p>
+                </div>
+                <a href="../index.html" class="bh1">Back home</a>
+            </div>
+            <div class="gradient"></div>
+            <img style="width: 486px; height: 525px;" class="isac" src="image.svg" alt="character">
+        </div>
     </header>
-    <img src="" alt="">
-    <div>
-        <p></p>
-        <input type="text">
-    </div>
-    <div>
-        <p></p>
-        <!-- <select>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-        </select> -->
-        <button id="btn1">
-            <p id="alive">Alive</p>
-            <img class="dos1" src="chevron-down.svg" alt="" id="svg1">
-        </button>
-        <div class="dppp1 invis">
-            <p id="Ali" style="margin: 0px;">Alive</p>
-            <p id="Dea" style="margin: 0px;">Dead</p>
-            <p id="Unk" style="margin: 0px;">Unknown</p>
+    <div class="filter-section">
+        <div>
+            <p>Name</p>
+            <input type="text" class="int11" placeholder="Enter name">
+        </div>
+        <div>
+            <p>Status</p>
+            <button id="btn1">
+                <p id="alive" style="font-family: 'Montserrat';">Alive</p>
+                <img class="dos1" src="chevron-down.svg" alt="" id="svg1">
+            </button>
+            <div class="dppp1 invis">
+                <p id="Ali" style="margin: 0px;">Alive</p>
+                <p id="Dea" style="margin: 0px;">Dead</p>
+                <p id="Unk" style="margin: 0px;">Unknown</p>
+            </div>
+        </div>
+        <div>
+            <p>Species</p>
+            <button id="btn2">
+                <p id="species-label">Human</p>
+                <img class="dos2" src="chevron-down.svg" alt="">
+            </button>
+            <div class="dppp2 invis" id="species-dropdown">
+                <p class="species-opt" data-value="All" style="margin: 0px;">All</p>
+                <p class="species-opt" data-value="Human" style="margin: 0px;">Human</p>
+                <p class="species-opt" data-value="Alien" style="margin: 0px;">Alien</p>
+                <p class="species-opt" data-value="Robot" style="margin: 0px;">Robot</p>
+                <p class="species-opt" data-value="Cronenberg" style="margin: 0px;">Cronenberg</p>
+                <p class="species-opt" data-value="Animal" style="margin: 0px;">Animal</p>
+                <p class="species-opt" data-value="Humanoid" style="margin: 0px;">Humanoid</p>
+                <p class="species-opt" data-value="Poopybuthole" style="margin: 0px;">Poopybuthole</p>
+                <p class="species-opt" data-value="Mythological Creature" style="margin: 0px;">Mythological Creature</p>
+            </div>
+        </div>
+        <div>
+            <p>Type</p><button id="btn3">
+                <p id="type-label">Parasite</p><img class="dos3" src="chevron-down.svg" alt="">
+            </button>
+            <div class="dppp3 invis" id="type-dropdown">
+                <p class="type-opt" data-value="All" style="margin: 0px;">All</p>
+                <p class="type-opt" data-value="Parasite" style="margin: 0px;">Parasite</p>
+                <p class="type-opt" data-value="Superhuman" style="margin: 0px;">Superhuman</p>
+                <p class="type-opt" data-value="Humanoid" style="margin: 0px;">Humanoid</p>
+                <p class="type-opt" data-value="Genetic" style="margin: 0px;">Genetic</p>
+                <p class="type-opt" data-value="Fish-Person" style="margin: 0px;">Fish-Person</p>
+                <p class="type-opt" data-value="Cronenberg" style="margin: 0px;">Cronenberg</p>
+                <p class="type-opt" data-value="Cyborg" style="margin: 0px;">Cyborg</p>
+            </div>
+        </div>
+        <div>
+            <p>Gender</p><button id="btn4">
+                <p id="gender-label">All</p><img class="dos4" src="chevron-down.svg" alt="">
+                <div></div>
+            </button>
+            <div class="dppp4 invis" id="gender-dropdown">
+                <p class="gender-opt" data-value="All" style="margin: 0px;">All</p>
+                <p class="gender-opt" data-value="Male" style="margin: 0px;">Male</p>
+                <p class="gender-opt" data-value="Female" style="margin: 0px;">Female</p>
+                <p class="gender-opt" data-value="Genderless" style="margin: 0px;">Genderless</p>
+                <p class="gender-opt" data-value="Unknown" style="margin: 0px;">Unknown</p>
+            </div>
         </div>
     </div>
-    <div>
-        <p>Species</p>
-        <button id="btn2">
-            <p id="species-label">Human</p>
-            <img class="dos2" src="chevron-down.svg" alt="">
-        </button>
-        <div class="dppp2 invis" id="species-dropdown">
-            <p class="species-opt" data-value="All" style="margin: 0px;">All</p>
-            <p class="species-opt" data-value="Human" style="margin: 0px;">Human</p>
-            <p class="species-opt" data-value="Alien" style="margin: 0px;">Alien</p>
-            <p class="species-opt" data-value="Robot" style="margin: 0px;">Robot</p>
-            <p class="species-opt" data-value="Cronenberg" style="margin: 0px;">Cronenberg</p>
-            <p class="species-opt" data-value="Animal" style="margin: 0px;">Animal</p>
-            <p class="species-opt" data-value="Humanoid" style="margin: 0px;">Humanoid</p>
-            <p class="species-opt" data-value="Poopybuthole" style="margin: 0px;">Poopybuthole</p>
-            <p class="species-opt" data-value="Mythological Creature" style="margin: 0px;">Mythological Creature</p>
-        </div>
-    </div>
-    <div>
-        <p>Type</p><button id="btn3">
-            <p id="type-label">Parasite</p><img class="dos3" src="chevron-down.svg" alt="">
-        </button>
-        <div class="dppp3 invis" id="type-dropdown">
-            <p class="type-opt" data-value="All" style="margin: 0px;">All</p>
-            <p class="type-opt" data-value="Parasite" style="margin: 0px;">Parasite</p>
-            <p class="type-opt" data-value="Superhuman" style="margin: 0px;">Superhuman</p>
-            <p class="type-opt" data-value="Humanoid" style="margin: 0px;">Humanoid</p>
-            <p class="type-opt" data-value="Genetic" style="margin: 0px;">Genetic</p>
-            <p class="type-opt" data-value="Fish-Person" style="margin: 0px;">Fish-Person</p>
-            <p class="type-opt" data-value="Cronenberg" style="margin: 0px;">Cronenberg</p>
-            <p class="type-opt" data-value="Cyborg" style="margin: 0px;">Cyborg</p>
-        </div>
-    </div>
-    <div>
-        <p>Gender</p><button id="btn4">
-            <p id="gender-label">All</p><img class="dos4" src="chevron-down.svg" alt="">
-            <div></div>
-        </button>
-        <div class="dppp4 invis" id="gender-dropdown">
-            <p class="gender-opt" data-value="All" style="margin: 0px;">All</p>
-            <p class="gender-opt" data-value="Male" style="margin: 0px;">Male</p>
-            <p class="gender-opt" data-value="Female" style="margin: 0px;">Female</p>
-            <p class="gender-opt" data-value="Genderless" style="margin: 0px;">Genderless</p>
-            <p class="gender-opt" data-value="Unknown" style="margin: 0px;">Unknown</p>
-        </div>
-    </div>
-    <div>
+    <div class="characters-container">
         <ul id="chrts1">
 
         </ul>
         <div id="no-results" class="no-results invis">
-            <img src="kisspng-portal-morty-smith-rick-sanchez-t-shirt-hoodie-portal-5ac4b0cbe2bbd5 2.png" alt="Portal" class="no-results-img">
+            <img src="kisspng-portal-morty-smith-rick-sanchez-t-shirt-hoodie-portal-5ac4b0cbe2bbd5 2.png" alt="Portal"
+                class="no-results-img">
             <h2>Oops! Try looking for something else...</h2>
         </div>
+        <button id="lmbtn">Load more</button>
     </div>
-    <button id="lmbtn">Load more</button>
-    
+
     <div id="character-modal" class="modal invis">
         <div class="modal-content">
             <span id="close-modal" class="close">&times;</span>
@@ -144,7 +153,7 @@
             </div>
         </div>
     </div>
-    
+
     <footer><img src="element.png" alt="1">
         <div>
             <p></p>
